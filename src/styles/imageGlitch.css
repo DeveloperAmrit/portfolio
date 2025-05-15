@@ -1,0 +1,91 @@
+.glitch-image {
+    position: relative;
+    animation: flicker2 3s infinite steps(1);
+}
+
+.glitch-image::before,
+.glitch-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    background-image: url('/images/Amrit.png');
+    opacity: 0.8;
+    z-index: 10;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    display: none; /* Hide by default */
+}
+
+.glitch-image.glitch-active::before,
+.glitch-image.glitch-active::after {
+    display: block;
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+    0% {
+        clip: rect(42px, 9999px, 44px, 0);
+        transform: translateX(-2px) skew(0.5deg) scale(1.02);
+        filter: grayscale(100%) contrast(2) hue-rotate(20deg) saturate(2);
+    }
+
+    10% {
+        clip: rect(20px, 9999px, 22px, 0);
+        transform: translateX(2px) skew(-0.5deg) scale(1.02);
+        filter: grayscale(100%) contrast(2) hue-rotate(-20deg) brightness(1.5);
+    }
+
+    20% {
+        clip: rect(60px, 9999px, 62px, 0);
+        transform: translateX(-1px) skew(0.2deg) scale(1.03);
+        filter: grayscale(100%) contrast(2) hue-rotate(15deg);
+    }
+
+    30% {
+        clip: rect(15px, 9999px, 18px, 0);
+        transform: translateX(1px) skew(-0.3deg) scale(1.01);
+        filter: grayscale(100%) contrast(2) hue-rotate(-10deg);
+    }
+
+    40%,
+    100% {
+        clip: rect(0px, 9999px, 100%, 0);
+        transform: none;
+        filter: none;
+    }
+}
+
+@keyframes flicker2 {
+    0%, 41.6%, 58.3%, 100% {
+        opacity: 1; /* Normal Amrit image */
+    }
+
+    41.7%, 58.2% {
+        opacity: 0.4; /* Flicker period (2s in middle of 12s) */
+    }
+}
+
+
+@keyframes hacker-flicker {
+    0%, 41.6%, 58.3%, 100% {
+        opacity: 0; /* Hidden most of the time */
+    }
+
+    43%, 45%, 46.5%, 47.5%, 55% {
+        opacity: 1; /* Flickers during 5s–7s */
+    }
+
+    44%, 45.8%, 47%, 56% {
+        opacity: 0;
+    }
+}
+.hacker-image {
+    animation: hacker-flicker 3s infinite steps(1);
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+}
