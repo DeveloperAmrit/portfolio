@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import ErrorMessage from '../components/Shared/error';
+import ErrorMessage from '../components/Shared/Error';
 import SuccessMessage from '../components/Shared/Success';
 import sendMail from '../components/Shared/sendmail';
 
